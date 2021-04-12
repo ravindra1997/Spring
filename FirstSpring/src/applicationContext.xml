@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+               http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="emp" class="com.techouts.firstSpring.Employeee">
+
+		<property name="id" value="125"></property>
+		<property name="name" value="Ravindra"></property>
+
+		<constructor-arg value="100" type="int"></constructor-arg>
+		<constructor-arg value="ravindra"></constructor-arg>
+	</bean>
+
+	<bean id="emps" class="com.techouts.dependencyInjection.Employe">
+		<constructor-arg name="id" value="131"></constructor-arg>
+		<constructor-arg name="name" value="harish"></constructor-arg>
+		<constructor-arg name="disignation" value="engineer"></constructor-arg>
+		<constructor-arg name="add" ref="add"></constructor-arg>
+	</bean>
+
+	<bean id="add" class="com.techouts.dependencyInjection.Address">
+		<constructor-arg name="dno" value="4"></constructor-arg>
+		<constructor-arg name="vill" value="bejji"></constructor-arg>
+		<constructor-arg name="dist" value="sklm"></constructor-arg>
+	</bean>
+
+	<bean id="stu" class="com.techouts.CollectionDependency.Student">
+		<constructor-arg value="8985464"></constructor-arg>
+		<constructor-arg value="Ravindra"></constructor-arg>
+		<constructor-arg value="GIET"></constructor-arg>
+		<constructor-arg value="hyderabad"></constructor-arg>
+		<constructor-arg>
+			<list>
+				<value>SSC</value>
+				<value>plus 2</value>
+				<value>B.tech</value>
+			</list>
+		</constructor-arg>
+		<constructor-arg>
+			<list>
+				<ref bean="perd" />
+				<ref bean="perd1" />
+			</list>
+		</constructor-arg>
+
+	</bean>
+	<bean id="la" class="com.techouts.CollectionDependency.Languages">
+		<constructor-arg value="English"></constructor-arg>
+	</bean>
+	<bean id="la1" class="com.techouts.CollectionDependency.Languages">
+		<constructor-arg value="Hindhi"></constructor-arg>
+	</bean>
+	<bean id="la2" class="com.techouts.CollectionDependency.Languages">
+		<constructor-arg value="Telugu"></constructor-arg>
+	</bean>
+
+	<bean id="perd" class="com.techouts.CollectionDependency.PersonalDetails">
+		<constructor-arg>
+			<set>
+				<ref bean="la" />
+				<ref bean="la1" />
+				<ref bean="la2" />
+			</set>
+		</constructor-arg>
+		<constructor-arg value="Rambabu"></constructor-arg>
+		<constructor-arg value="6"></constructor-arg>
+
+	</bean>
+	<bean id="perd1" class="com.techouts.CollectionDependency.PersonalDetails">
+		<constructor-arg>
+			<set>
+				<ref bean="la" />
+				<ref bean="la1" />
+				<ref bean="la2" />
+			</set>
+		</constructor-arg>
+		<constructor-arg value="Randy"></constructor-arg>
+		<constructor-arg value="6"></constructor-arg>
+	</bean>
+
+	<bean id="user" class="com.techouts.Map.User">
+		<constructor-arg value="123"></constructor-arg>
+		<constructor-arg value="Ravindra"></constructor-arg>
+		<constructor-arg value="NewYork"></constructor-arg>
+
+	</bean>
+	<bean id="user1" class="com.techouts.Map.User">
+		<constructor-arg value="1234"></constructor-arg>
+		<constructor-arg value="Harish"></constructor-arg>
+		<constructor-arg value="London"></constructor-arg>
+
+	</bean>
+	<bean id="user2" class="com.techouts.Map.User">
+		<constructor-arg value="12345"></constructor-arg>
+		<constructor-arg value="Cherry"></constructor-arg>
+		<constructor-arg value="Seattle"></constructor-arg>
+
+	</bean>
+
+	<bean id="answ" class="com.techouts.Map.Answer">
+		<constructor-arg value="123"></constructor-arg>
+		<constructor-arg value="India"></constructor-arg>
+		<constructor-arg value="03/04/2021"></constructor-arg>
+
+
+	</bean>
+	<bean id="answ1" class="com.techouts.Map.Answer">
+		<constructor-arg value="1234"></constructor-arg>
+		<constructor-arg value="pakistan"></constructor-arg>
+		<constructor-arg value="04/04/2021"></constructor-arg>
+
+	</bean>
+	<bean id="answ2" class="com.techouts.Map.Answer">
+		<constructor-arg value="12345"></constructor-arg>
+		<constructor-arg value="America"></constructor-arg>
+		<constructor-arg value="05/04/2021"></constructor-arg>
+
+	</bean>
+
+	<!-- <bean id="quests" class="com.techouts.Map.Question"> <constructor-arg 
+		value="1"></constructor-arg> <constructor-arg value="Where Are You From?"></constructor-arg> 
+		<constructor-arg> <map> <entry key-ref="user" value-ref="answ"></entry> <entry 
+		key-ref="user1" value-ref="answ1"></entry> <entry key-ref="user2" value-ref="answ2"></entry> 
+		</map> </constructor-arg> </bean> -->
+
+	<bean id="quests" class="com.techouts.Map.Question">
+		<constructor-arg value="1"></constructor-arg>
+		<constructor-arg value="Where are you from?"></constructor-arg>
+		<constructor-arg>
+			<map>
+				<entry key-ref="answ" value-ref="user"></entry>
+				<entry key-ref="answ1" value-ref="user1"></entry>
+				<entry key-ref="answ2" value-ref="user2"></entry>
+			</map>
+
+		</constructor-arg>
+	</bean>
+	<!-- <bean id="bi" class="com.techouts.BeamInherit.Student"> <constructor-arg 
+		value="Ravindra"></constructor-arg> <constructor-arg value="ravi@gmail.com"></constructor-arg> 
+		</bean> <bean id="ads" class="com.techouts.BeamInherit.Address"> <constructor-arg 
+		value="12"></constructor-arg> <constructor-arg value="hyd"></constructor-arg> 
+		<constructor-arg value="india"></constructor-arg> </bean> <bean id="bi2" 
+		class="com.techouts.BeamInherit.Student" parent="bi"> <constructor-arg><ref 
+		bean="bi"></ref></constructor-arg> </bean> -->
+
+	<bean id="coll" class="com.techouts.setterInjection.College">
+		<property name="universityName" value="JNTU"></property>
+		<property name="universityLocation" value="Hyderabad"></property>
+		<property name="uniId" value="1532"></property>
+		<property name="mp">
+			<map>
+				<entry key="12" value="Giet"></entry>
+				<entry key="123" value="Kiet"></entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="run" class="com.techouts.FactoryDependency.Run"
+		factory-method="getRun">
+	</bean>
+	<bean id="obj" class="com.techouts.Aop.A"></bean>
+	<bean id="ba" class="com.techouts.Aop.BeforeAdviser"></bean>
+
+	<bean id="proxy" class="com.techouts.Aop.ProxyFactoryBean">
+		<property name="target" ref="obj"></property>
+		<property name="interceptorNames">
+			<list>
+				<value>ba</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="college" class="com.techouts.Autowiring.College1">
+		<property name="collId" value="233"></property>
+		<property name="collName" value="stanford"></property>
+		<property name="collLocation" value="America"></property>
+
+	</bean>
+
+	<bean id="college2" class="com.techouts.Autowiring.College1">
+		<property name="collId" value="2334"></property>
+		<property name="collName" value="oxford"></property>
+		<property name="collLocation" value="America"></property>
+
+	</bean>
+	<bean id="emp1" class="com.techouts.Autowiring.Employe" autowire="byName">
+		<property name="Id" value="233"></property>
+		<property name="name" value="stanford"></property>
+		<property name="location" value="America"></property>
+	</bean>
+
+
+
+
+
+
+
+
+
+
+
+
+</beans>
